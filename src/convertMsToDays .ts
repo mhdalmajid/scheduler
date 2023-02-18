@@ -1,5 +1,5 @@
 const typeNaN = [NaN, Infinity] as const;
-function convertMsToDays<T extends number | unknown>(
+function convertMsToDays<T extends number>(
   x: T
 ): T extends number
   ? T extends typeof typeNaN[number]
@@ -7,8 +7,8 @@ function convertMsToDays<T extends number | unknown>(
     : number
   : number;
 
-function convertMsToDays(ms: number | unknown): number | undefined {
-  if (typeof ms !== "number" || Number.isNaN(ms)) return undefined;
+function convertMsToDays(ms: number): number | undefined {
+  // if (typeof ms !== "number" || Number.isNaN(ms)) return undefined;
 
   const msInOneSecond = 1000;
   const secondsInOneMinute = 60;
@@ -22,4 +22,6 @@ function convertMsToDays(ms: number | unknown): number | undefined {
   return Math.ceil(ms / msInOneDay);
 }
 
-const result = convertMsToDays(1);
+const result = convertMsToDays(NaN);
+console.log(result);
+console.log(NaN || 1);
